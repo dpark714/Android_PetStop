@@ -1,8 +1,5 @@
 package com.example.android_petstop;
 
-import static com.example.android_petstop.R.id.btn_goto_LogIn;
-import static com.example.android_petstop.R.id.btn_logIn;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -13,9 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,37 +26,33 @@ public class SignUpActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.btn_signUp).setOnClickListener(onClickListener);
-        findViewById(R.id.btn_goto_LogIn).setOnClickListener(onClickListener);
+        findViewById(R.id.signUpButton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoLoginButton).setOnClickListener(onClickListener);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            reload();
-//        }
+    public void onBackPressed(){
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
+    View.OnClickListener onClickListener = (view) -> {
             switch (view.getId()){
-                case R.id.btn_signUp:
+                case R.id.signUpButton:
                     signUp();
                     break;
-                case btn_goto_LogIn:
-                    startLogInActivity();
+                case R.id.gotoLoginButton:
+                    myStartActivity(LogInActivity.class);
                     break;
             }
-        }
     };
+
     private void signUp() {
-        String email = ((EditText) findViewById(R.id.et_signUp_username)).getText().toString();
-        String password = ((EditText) findViewById(R.id.et_signUp_password)).getText().toString();
-        String passwordCheck = ((EditText) findViewById(R.id.et_signUp_passwordCheck)).getText().toString();
+        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordEditText)).getText().toString();
+        String passwordCheck = ((EditText) findViewById(R.id.passwordCheckEditText)).getText().toString();
 
         if(email.length()> 0 && password.length() > 0 && passwordCheck.length()>0){
             if (password.equals(passwordCheck)){
@@ -72,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                myStartActivity(MainActivity.class);
                                 startToast("signUp: success");
                             } else {
                                 if (task.getException() != null){
@@ -89,8 +80,11 @@ public class SignUpActivity extends AppCompatActivity {
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-    private void startLogInActivity(){
-        Intent intent = new Intent(this,LogInActivity.class);
+
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
 }

@@ -3,8 +3,9 @@ package com.example.android_petstop;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,40 +20,31 @@ public class LogInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "LogInActivity";
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.btn_logIn).setOnClickListener(onClickListener);
+        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoPasswordButton).setOnClickListener(onClickListener);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null){
-//            reload();
-//        }
-    }
-
-    View.OnClickListener onClickListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
+    View.OnClickListener onClickListener = (view) -> {
             switch (view.getId()){
-                case R.id.btn_logIn:
-                    signUp();
+                case R.id.loginButton:
+                    login();
+                    break;
+                case R.id.gotoPasswordButton:
+                    myStartActivity(ResetPasswordActivity.class);
                     break;
             }
-        }
     };
-    private void signUp() {
-        String email = ((EditText) findViewById(R.id.et_signUp_username)).getText().toString();
-        String password = ((EditText) findViewById(R.id.et_signUp_password)).getText().toString();
+    private void login() {
+        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordEditText)).getText().toString();
 
         if(email.length()> 0 && password.length() > 0){
             mAuth.signInWithEmailAndPassword(email, password)
@@ -62,6 +54,7 @@ public class LogInActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("Log in: success");
+                                finish();
                             } else {
                                 if (task.getException() != null){
                                     startToast(task.getException().toString());
@@ -76,4 +69,10 @@ public class LogInActivity extends AppCompatActivity {
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
+
