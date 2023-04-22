@@ -2,19 +2,28 @@ package com.example.android_petstop;
 
 import static com.example.android_petstop.R.id.logoutButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BasicActivity {
+    private static final String TAG = "MainActivity";
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,39 +31,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        // Initialize Firebase Auth
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+
+        if(user == null) {
             myStartActivity(SignUpActivity.class);
         }else{
-            //sign up or login
-                for (UserInfo profile : user.getProviderData()) {
-                    String name = profile.getDisplayName();
-                    if(name != null){
-                        if(name.length() == 0){
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("users").document(user.getUid());
+            docRef.get().addOnCompleteListener((task) -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if(document != null){
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        } else {
+                            Log.d(TAG, "No such document");
                             myStartActivity(MemberInitActivity.class);
                         }
-
                     }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
+            });
         }
+
+
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
+        findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.logoutButton:
-                    FirebaseAuth.getInstance().signOut();
-                    myStartActivity(SignUpActivity.class);
-                    break;
-            }
+    View.OnClickListener onClickListener = (view) -> {
+        switch (view.getId()){
+            case R.id.logoutButton:
+                FirebaseAuth.getInstance().signOut();
+                myStartActivity(SignUpActivity.class);
+                break;
+            case R.id.floatingActionButton:
+                myStartActivity(WritePostActivity.class);
+                break;
         }
     };
-
     private void myStartActivity(Class c){
         Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

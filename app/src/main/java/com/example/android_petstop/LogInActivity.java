@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends BasicActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "LogInActivity";
 
@@ -48,17 +48,14 @@ public class LogInActivity extends AppCompatActivity {
 
         if(email.length()> 0 && password.length() > 0){
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("Log in: success");
-                                finish();
-                            } else {
-                                if (task.getException() != null){
-                                    startToast(task.getException().toString());
-                                }
+                    .addOnCompleteListener(this, (task) -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startToast("Log in: success");
+                            myStartActivity(MainActivity.class);
+                        } else {
+                            if (task.getException() != null){
+                                startToast(task.getException().toString());
                             }
                         }
                     });

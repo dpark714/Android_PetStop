@@ -6,12 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<Button
-    android:id="@+id/logoutButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="log out"
-    tools:layout_editor_absoluteX="169dp"
-    tools:layout_editor_absoluteY="337dp"
-    tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="log out"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:clickable="true"
+        android:contentDescription="@string/add_post"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="635dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
