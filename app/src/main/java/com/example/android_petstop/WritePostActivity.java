@@ -5,6 +5,7 @@ import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,8 @@ public class WritePostActivity extends BasicActivity {
         setContentView(R.layout.activity_write_post);
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
+        findViewById(R.id.imageButton).setOnClickListener(onClickListener);
+        findViewById(R.id.videoButton).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -37,6 +40,12 @@ public class WritePostActivity extends BasicActivity {
             switch (view.getId()) {
                 case R.id.checkButton:
                     profileUpdate();
+                    break;
+                case R.id.imageButton:
+                    //myStartActivity(GalleryActiivty.class);
+                    break;
+                case R.id.videoButton:
+
                     break;
             }
         }
@@ -73,4 +82,11 @@ public class WritePostActivity extends BasicActivity {
                 });
     }
     private void startToast(String msg){ Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();}
+
+
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivityForResult(intent, 0);
+    }
+
 }

@@ -10,35 +10,40 @@ public class MemberInfo {
     private String birthday;
     private String zipCode;
 
-    public MemberInfo(String name, String phoneNumber, String birthday, String zipCode){
+    public MemberInfo(String name, String phoneNumber, String birthday, String zipCode) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.zipCode = zipCode;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    public String getPhoneNumber(){
+
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
-    public void setPhoneNumber(String phoneNumber){
+
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    public String getBirthday(){
+
+    public String getBirthday() {
         return this.birthday;
     }
-    public void setBirthday(String birthday){
+
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    public String getZipCode(){
-        return this.zipCode;
-    }
-    public void setZipCode(String zipCode){
+
+    public String getZipCode() { return this.zipCode; }
+
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 }
