@@ -26,7 +26,7 @@ public class DogInfoActivity extends BasicActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPresssed();
+        super.onBackPressed();
         finish();
     }
 
@@ -67,4 +67,3 @@ public class DogInfoActivity extends BasicActivity {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
     }
-}

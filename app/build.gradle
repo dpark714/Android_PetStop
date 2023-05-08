@@ -41,14 +41,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.firebase:firebase-firestore'
-<<<<<<< HEAD
-
-
-
-
     //material components
     implementation 'com.google.android.material:material:1.8.0'
-
-=======
->>>>>>> 280c54b9dfdb16f729852b9f6c6495a1f333a2e3
 }
