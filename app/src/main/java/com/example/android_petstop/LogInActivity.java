@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class LogInActivity extends BasicActivity {
 
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
         findViewById(R.id.gotoPasswordButton).setOnClickListener(onClickListener);
+
     }
 
     View.OnClickListener onClickListener = (view) -> {
@@ -52,7 +55,9 @@ public class LogInActivity extends BasicActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startToast("Log in: success");
-                            myStartActivity(MainActivity.class);
+                            //Intent intent = new Intent(this, ProfileActivity.class);
+                            //startActivity(intent);
+                            myStartActivity(ProfileActivity.class);
                         } else {
                             if (task.getException() != null){
                                 startToast(task.getException().toString());

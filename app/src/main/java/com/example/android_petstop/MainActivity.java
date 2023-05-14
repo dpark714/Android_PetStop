@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 
@@ -35,6 +36,9 @@ public class MainActivity extends BasicActivity {
         if(user == null) {
             myStartActivity(SignUpActivity.class);
         }else{
+
+            myStartActivity(ProfileActivity.class);
+
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener((task) -> {

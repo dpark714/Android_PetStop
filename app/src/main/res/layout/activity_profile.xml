@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,126 +9,146 @@
     tools:context=".ProfileActivity"
     android:background="@color/white">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="?android:attr/windowBackground">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="265dp"
-            android:background="@drawable/top_background">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
 
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ownerProfile2"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginTop="57dp"
-                android:background="@drawable/ownerprofile2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.125"
-                app:layout_constraintStart_toEndOf="@+id/userProfile"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                app:layout_constraintVertical_bias="0.0"
-                app:shapeAppearanceOverlay="@style/Circular"
-                app:strokeColor="@color/white"
-                app:strokeWidth="5dp" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/userProfile"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/userProfile"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.275"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                app:shapeAppearanceOverlay="@style/Circular"
-                app:strokeColor="@color/white"
-                app:strokeWidth="5dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lhakyi + Dahyeon"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:layout_gravity="center_horizontal" />
-
-
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="4 months"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/breed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Golden Retriever"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/motto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="food food food nomnomnom"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
-
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bar">
         <LinearLayout
-            android:id="@+id/LinearLayout02"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/followButton"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/top_background"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/petParent"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@drawable/ownerprofile2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.125"
+                    app:layout_constraintStart_toEndOf="@+id/userProfile"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:shapeAppearanceOverlay="@style/Circular"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="5dp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/userProfile"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/userprofile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.275"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/Circular"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="5dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="65dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/dark_yellow"
-                android:text="Follow"
+                android:text="Lhakyi + Dahyeon"
                 android:textColor="@color/black"
-                app:cornerRadius="50dp" />
+                android:textSize="25sp"
+                android:layout_gravity="center_horizontal" />
 
-            <Button
-                android:id="@+id/messageButton"
+            <TextView
+                android:id="@+id/age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="65dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/dark_yellow"
-                android:text="Message"
+                android:layout_gravity="center_horizontal"
+                android:text="4 months"
                 android:textColor="@color/black"
-                app:cornerRadius="50dp" />
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/breed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Golden Retriever"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/motto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="food food food nomnomnom"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+
+            <LinearLayout
+                android:id="@+id/LinearLayout02"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/followButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/dark_yellow"
+                    android:text="Follow"
+                    android:textColor="@color/black"
+                    app:cornerRadius="50dp" />
+
+                <Button
+                    android:id="@+id/messageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="65dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/dark_yellow"
+                    android:text="Message"
+                    android:textColor="@color/black"
+                    app:cornerRadius="50dp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"/>
 
         </LinearLayout>
 
-
-    </LinearLayout>
-
-
     </ScrollView>
+
+</RelativeLayout>
+

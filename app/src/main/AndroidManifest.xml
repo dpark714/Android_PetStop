@@ -19,15 +19,12 @@
         android:theme="@style/Theme.Android_PetStop"
         tools:targetApi="33">
         <activity
-<<<<<<< HEAD
-            android:name=".EditProfile"
-            android:exported="false" />
+            android:name=".PostActivity"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".ProfileActivity"
-            android:exported="false" />
-=======
-            android:name=".WritePostActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -53,7 +50,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
->>>>>>> 280c54b9dfdb16f729852b9f6c6495a1f333a2e3
         <activity
             android:name=".LogInActivity"
             android:exported="false">
@@ -69,7 +65,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

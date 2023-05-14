@@ -1,17 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:background="@color/white">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileOne"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:background="@drawable/pet1"
+                app:layout_constraintBottom_toTopof="@+id/profileTwo"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeColor="@color/dark_yellow"
+                app:strokeWidth="5dp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="80dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileThree"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/pet3"
+                app:layout_constraintBottom_toTopOf="@+id/profileTwo"
+                app:layout_constraintTop_toBottomOf="@+id/profileOne"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeColor="@color/dark_yellow"
+                app:strokeWidth="5dp"
+                tools:layout_editor_absoluteX="80dp"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileTwo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/pet2"
+                app:layout_constraintTop_toBottomOf="@+id/profileThree"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeColor="@color/dark_yellow"
+                app:strokeWidth="5dp"
+                tools:layout_editor_absoluteX="80dp"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>
