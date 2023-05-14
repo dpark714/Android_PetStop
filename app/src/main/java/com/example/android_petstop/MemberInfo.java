@@ -1,20 +1,25 @@
 package com.example.android_petstop;
 
-import android.widget.EditText;
-
-import java.lang.reflect.Member;
-
 public class MemberInfo {
     private String name;
     private String phoneNumber;
     private String birthday;
-    private String zipCode;
+    private String address;
+    private String photoUrl;
 
-    public MemberInfo(String name, String phoneNumber, String birthday, String zipCode) {
+    public MemberInfo(String name, String phoneNumber, String birthday, String address, String photoUrl) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
-        this.zipCode = zipCode;
+        this.address = address;
+        this.photoUrl = photoUrl;
+    }
+
+    public MemberInfo(String name, String phoneNumber, String birthday, String address) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+        this.address = address;
     }
 
     public String getName() {
@@ -41,9 +46,19 @@ public class MemberInfo {
         this.birthday = birthday;
     }
 
-    public String getZipCode() { return this.zipCode; }
+    public String getZipCode() {
+        return this.address;
+    }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+        this.address = zipCode;
+    }
+
+    public String getPhotoUrl() {
+        return this.photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

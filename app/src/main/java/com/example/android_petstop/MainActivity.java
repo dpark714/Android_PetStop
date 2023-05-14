@@ -1,23 +1,13 @@
 package com.example.android_petstop;
 
-import static com.example.android_petstop.R.id.logoutButton;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,18 +23,17 @@ public class MainActivity extends BasicActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user == null) {
+        if (user == null) {
             myStartActivity(SignUpActivity.class);
-        }else{
-
-            myStartActivity(ProfileActivity.class);
+        } else {
+            myStartActivity(CameraActivity.class);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener((task) -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if(document != null){
+                    if (document != null) {
                         if (document.exists()) {
                             Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         } else {
@@ -64,7 +53,7 @@ public class MainActivity extends BasicActivity {
     }
 
     View.OnClickListener onClickListener = (view) -> {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.logoutButton:
                 FirebaseAuth.getInstance().signOut();
                 myStartActivity(SignUpActivity.class);
@@ -74,7 +63,8 @@ public class MainActivity extends BasicActivity {
                 break;
         }
     };
-    private void myStartActivity(Class c){
+
+    private void myStartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
