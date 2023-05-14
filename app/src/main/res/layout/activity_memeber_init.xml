@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,81 +7,143 @@
     android:background="@drawable/dog_background"
     tools:context=".MemberInitActivity">
 
-    <TextView
-        android:id="@+id/tv_PetStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="420dp"
-        android:fontFamily="@font/lobster"
-        android:text="PetStop"
-        android:textColor="@color/gray"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/nameEditText"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@color/gray"
-        android:hint=" Name"
-        app:layout_constraintTop_toBottomOf="@id/tv_PetStop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="380dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-    <EditText
-        android:id="@+id/phoneNumberEditText"
-        android:inputType="phone"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@color/gray"
-        android:hint=" Phone number"
-        app:layout_constraintTop_toBottomOf="@id/nameEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="370dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    <EditText
-        android:id="@+id/birthdayEditText"
-        android:inputType="date"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@color/gray"
-        android:hint=" Date of Birth"
-        app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="310dp"/>
+            <TextView
+                android:id="@+id/tv_PetStop"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/lobster"
+                android:gravity="center"
+                android:text="PetStop"
+                android:textColor="@color/gray"
+                android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/zipCodeEditText"
-        android:inputType="textPostalAddress"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@color/gray"
-        android:hint=" Zip code"
-        app:layout_constraintTop_toBottomOf="@id/birthdayEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="250dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/checkButton"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="Confirm"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/light_yellow"
-        app:layout_constraintTop_toBottomOf="@id/zipCodeEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50sp"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:cardCornerRadius="100dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/profileImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:src="@android:drawable/sym_def_app_icon" />
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/gray"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/phoneNumberEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/gray"
+                    android:ems="10"
+                    android:hint="Phone number"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/birthdayEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/gray"
+                    android:ems="10"
+                    android:hint="Date of Birth (YYYYMMDD)"
+                    android:inputType="date" />
+
+
+                <EditText
+                    android:id="@+id/addressEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/gray"
+                    android:ems="10"
+                    android:hint="Zipcode"
+                    android:inputType="textPostalAddress" />
+
+                <Button
+                    android:id="@+id/checkButton"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/light_yellow"
+                    android:text="Confirm"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/buttonsBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#91646464"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="10dp"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="picture" />
+
+                <Button
+                    android:id="@+id/gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gallery" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/view_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>
